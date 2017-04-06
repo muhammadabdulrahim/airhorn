@@ -18,3 +18,6 @@ FMOD is used for audio-handling. It probably is overkill to include it. Fork you
 3. If it fails to make, look at the makefile and make sure you have the proper compiler
 4. This literally is a joke so plese don't take it too seriously
 
+## Known Bugs
+
+* ctrl+z in other applications may stop working, leaving you with only airhorn sounds. This might actually be a feature, though it is unintended...
