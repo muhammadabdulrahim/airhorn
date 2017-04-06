@@ -10,38 +10,15 @@
 const UINT Z_KEY = 0x5A;
 const char g_class_name[] = "Airhorn";
 
-/* Function prototypes */
-LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
-int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
-
-/* Function definitions */
-
-/*
-int _cdecl _tmain( int argc, TCHAR *argv[])
-{
-	if( RegisterHotKey(NULL,1,MOD_CONTROL,Z_KEY) )
-	{
-		_tprintf(_T("Hotkey 'CTRL+b' registered\n"));
-	}
-
-	MSG msg = {0};
-	while( GetMessage(&msg,NULL,0,0)!=0 )
-	{
-		if( msg.message == WM_HOTKEY )
-		{
-			_tprintf(_T("WM_HOTKEY received\n"));
-		}
-	}
-
-	return 0;
-}
-*/
-
 /* Handle callbacks */
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch(msg)
 	{
+		case WM_HOTKEY:
+			//TODO
+			DestroyWindow(hwnd);
+			return 0;
 		case WM_CLOSE:
 			DestroyWindow(hwnd);
 			return 0;
@@ -97,15 +74,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return 0;
 	}
 
-	/*
-	ShowWindow(hwnd,SW_SHOWNORMAL);
-	UpdateWindow(hwnd);
-	ShowWindow(GetConsoleWindow(),SW_HIDE);
-	*/
-
 	ShowWindow(hwnd,nCmdShow);
 	UpdateWindow(hwnd);
 
+	// Register the hotkeys
+	RegisterHotKey(hwnd,100,MOD_CONTROL,Z_KEY);
+	
 	// Message loop
 	while( GetMessage(&Msg,NULL,0,0)>0 )
 	{
