@@ -5,10 +5,12 @@
  */
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include "inc/fmod.h"
 
 /* Constant definitions */
 const UINT Z_KEY = 0x5A;
 const char g_class_name[] = "Airhorn";
+
 
 /* Handle callbacks */
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -16,8 +18,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch(msg)
 	{
 		case WM_HOTKEY:
-			//TODO
-			DestroyWindow(hwnd);
+			//PlaySound(TEXT("recycle.wav"),NULL,SND_FILENAME);
 			return 0;
 		case WM_CLOSE:
 			DestroyWindow(hwnd);
@@ -40,7 +41,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// Describe the window structure
 	wc.cbSize		= sizeof(WNDCLASSEX);
 	wc.style		= 0;
-	wc.lpfnWndProc		= WndProc;//TODO: Specify name of function
+	wc.lpfnWndProc		= WndProc;
 	wc.cbClsExtra		= 0;
 	wc.cbWndExtra		= 0;
 	wc.hInstance		= hInstance;
@@ -74,6 +75,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return 0;
 	}
 
+	// Sample the audio into memory
+
+	// Show the window
 	ShowWindow(hwnd,nCmdShow);
 	UpdateWindow(hwnd);
 
