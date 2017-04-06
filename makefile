@@ -1,5 +1,5 @@
 CC	:= /usr/bin/x86_64-w64-mingw32-gcc
-CFLAGS	:= -g -Wall
+CFLAGS	:= -g -Wall -Wl,--subsystem,windows
 SRCS	:= airhorn.c
 OBJS	:= ${SRCS:.c=.o}
 TARGET	:= ${SRCS:.c=.exe}
